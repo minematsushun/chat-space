@@ -1,0 +1,69 @@
+.side{
+  width:300px;
+  height: 100vh;
+  color:  $white;
+  float: left;
+
+  &__header{
+    height: 100px;
+    background: $black-2;
+    padding: 0px  20px;
+    display: flex;
+    align-items: center;
+
+    &__box{
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      width: 100%;
+
+      &__menu{
+        display: flex;
+
+        li{
+          list-style: none;
+          margin-left: .3rem;
+
+          a{
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+  &__groups{
+    height: calc(100vh - 100px);
+    background: $black-1;
+    padding: 0px  20px;
+    
+    &__group{
+      
+    }
+  }
+}
+
+
+.main{
+  height: 100vh;
+  width: calc(100vw - 300px);
+  float: right;
+
+  &__header{
+    height: 100px;
+    border-bottom: 1px solid $grey-e;
+    padding: 0px  40px;
+  }
+  &__contents{
+    height: calc(100vh - 100px);
+  }
+  &__content{
+    height: calc(100vh - 190px);
+    background: $main-bg;
+    padding: 0px  40px;
+  }
+  &__form{
+    height: 90px;
+    background: $grey-d;
+    padding: 0px  40px;
+  }
+}
