@@ -1,36 +1,7 @@
 .flash
 .contents
   .side
-    .side__header
-      .side__header__box
-        .side__header__box__name
-          %p あああ
-        %ul.side__header__box__menu
-          %li.side__header__box__menu__new-group
-            = link_to "#" do
-              %i.fa.fa-edit
-          %li.side__header__box__menu__setting
-            = link_to "#" do
-              %i.fa.fa-cog
-    .side__groups
-      = link_to "#" do
-        .side__group
-          .side__group__name
-            %p いいい1
-          .side__group__text
-            %p いいい2
-      = link_to "#" do
-        .side__group
-          .side__group__name
-            %p いいい1
-          .side__group__text
-            %p いいい2
-      = link_to "#" do
-        .side__group
-          .side__group__name
-            %p いいい1
-          .side__group__text
-            %p いいい2
+    = render 'shared/side_bar'
   .main
     .main__header
       .main__header__left
