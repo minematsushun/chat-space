@@ -1,82 +1,27 @@
 .flash
 .contents
   .side
-    .side__header
-      .side__header__box
-        .side__header__box__name
-          %p あああ
-        %ul.side__header__box__menu
-          %li.side__header__box__menu__new-group
-            = link_to "#" do
-              %i.fa.fa-edit
-          %li.side__header__box__menu__setting
-            = link_to "#" do
-              %i.fa.fa-cog
-    .side__groups
-      = link_to "#" do
-        .side__group
-          .side__group__name
-            %p いいい1
-          .side__group__text
-            %p いいい2
-      = link_to "#" do
-        .side__group
-          .side__group__name
-            %p いいい1
-          .side__group__text
-            %p いいい2
-      = link_to "#" do
-        .side__group
-          .side__group__name
-            %p いいい1
-          .side__group__text
-            %p いいい2
+    = render 'shared/side_bar'
   .main
     .main__header
       .main__header__left
-        %h2.main__header__left__name ううう
+        %h2.main__header__left__name
+          = @group.name
         %ul.main__header__left__members
-          ううう１:
-          %li.main__header__left__member
-            %p ううう２
-          %li.main__header__left__member
-            %p ううう２
-          %li.main__header__left__member
-            %p ううう２
-      = link_to "#" do
+          member:
+          - @members.each do |member|
+            %li.main__header__left__member
+              = member.name
+      = link_to edit_group_path(@group) do
         .main__header__right Edit
     .main__contents
       .main__content
-        .main__content__message
-          .main__content__message__upper-info
-            .main__content__message__upper-info__name
-              %p えええ
-            .main__content__message__upper-info__time
-              %p えええ２
-          .main__content__message__text
-            %p ええええええ３
-        .main__content__message
-          .main__content__message__upper-info
-            .main__content__message__upper-info__name
-              %p えええ
-            .main__content__message__upper-info__time
-              %p えええ２
-          .main__content__message__text
-            %p ええええええ３
-        .main__content__message
-          .main__content__message__upper-info
-            .main__content__message__upper-info__name
-              %p えええ
-            .main__content__message__upper-info__time
-              %p えええ２
-          .main__content__message__text
-            %p ええええええ３
-      .main__form
-        .main__form__box
-          %form
-            %input.main__form__box__input{name: :name, placeholder: "type a message", type: :text}
-            %label.upload-label{for: "message_image"}
-              %i.fa.fa-picture-o
-              %input#message_image.main__form__box__image{name: :image, type: :file}
-        = link_to "#" do
-          .main__form__btn send
+        = render @messages
+      .form
+        =form_for [@group, @message] do |f|
+          = f.text_field :content, class:  "form__message", placeholder: "type a message"
+          .form__mask
+            = f.label :image, class: "form__mask__image" do
+              = fa_icon "image", class: "icon"
+              = f.file_field :image, class: "hidden"
+          = f.submit "Send", class: "form__submit"

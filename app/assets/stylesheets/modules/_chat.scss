@@ -1,66 +1,7 @@
-.side{
-  width:300px;
-  height: 100vh;
-  color:  $white;
-  float: left;
-
-  &__header{
-    height: 100px;
-    background: $black-2;
-    padding: 0px  20px;
-    display: flex;
-    align-items: center;
-
-    &__box{
-      display: flex;
-      justify-content: space-between;
-      font-weight: bold;
-      width: 100%;
-
-      &__menu{
-        display: flex;
-
-        li{
-          list-style: none;
-          margin-left: .3rem;
-
-          a{
-            color: $white;
-          }
-        }
-      }
-    }
-  }
-  &__groups{
-    height: calc(100vh - 100px);
-    background: $black-1;
-    padding: 20px  20px 0;
-
-    a{
-      color: $white;
-    }
-  }
-
-  &__group{
-    margin-bottom: 40px;
-    font-weight: bold;
-
-    &__name{
-      font-size: 15px;
-      margin-bottom: 5px;
-    }
-    &__text{
-      font-size: 11px;
-    }
-  }
-}
-
 
 .main{
-  height: 100vh;
   width: calc(100vw - 300px);
   float: right;
-
   &__header{
     height: 100px;
     border-bottom: 1px solid $grey-e;
@@ -68,10 +9,8 @@
     display: flex;
     justify-content: space-between;
     overflow: scroll;
-
     &__left{
       margin-top: 35px;
-
       &__name{
         font-size: 20px;
         margin-bottom: 15px;
@@ -84,7 +23,6 @@
       }
       &__member{
         padding-left: 0.3rem;
-
       }
     }
     a{
@@ -100,22 +38,15 @@
       right: 40px;
     }
   }
-
-  &__contents{
-    height: calc(100vh - 100px);
-  }
   &__content{
     height: calc(100vh - 190px);
     background: $main-bg;
     padding: 46px 40px;
-
     &__message{
       margin-bottom: 40px;
-
       &__upper-info{
         display: flex;
         justify-content: flex-start;
-
         &__name{
           color: $grey-4;
           font-weight: bold;
@@ -133,43 +64,38 @@
       }
     }
   }
-  &__form{
-    height: 90px;
+  .form{
     background: $grey-d;
+    height: 90px;
     padding: 20px  40px;
-    display: flex;
-    justify-content: space-between;
-
-    &__box{
-      position: relative;
-      width: 100%;
-
-      &__input{
-        background: $white;
-        height: 50px;
-        width: 100%;
-        padding: 0 40px 0 10px;
+    &__message {
+      border: none;
+      float: left;
+      height: 50px;
+      padding-left: 10px;
+      width: calc(100% - 150px);
+    }
+    &__mask {
+      background: $white;
+      float: left;
+      height: 50px;
+      padding-right: 10px;
+      &__image {
+        font-size: 20px;
+        line-height: 50px;
       }
-      .upload-label{
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        font-size: 1.3rem;
-      }
-      &__image{
+      .hidden{
         display: none;
       }
     }
-    a {
+    &__submit {
+      background: $btn;
+      border: none;
       color: $white;
-    }
-    &__btn{
+      float: right;
       height: 50px;
-      line-height: 50px;
-      width: 100px;
       margin-left: 15px;
       padding: 0 30px;
-      background: $btn;
     }
   }
 }
