@@ -5,23 +5,50 @@
   .main
     .main__header
       .main__header__left
-        %h2.main__header__left__name
-          = @group.name
+        %h2.main__header__left__name ううう
         %ul.main__header__left__members
-          member:
-          - @members.each do |member|
-            %li.main__header__left__member
-              = member.name
-      = link_to edit_group_path(@group) do
+          ううう１:
+          %li.main__header__left__member
+            %p ううう２
+          %li.main__header__left__member
+            %p ううう２
+          %li.main__header__left__member
+            %p ううう２
+      = link_to edit_group_path(current_user.id) do
+        -# 分からん
         .main__header__right Edit
     .main__contents
       .main__content
-        = render @messages
-      .form
-        =form_for [@group, @message] do |f|
-          = f.text_field :content, class:  "form__message", placeholder: "type a message"
-          .form__mask
-            = f.label :image, class: "form__mask__image" do
-              = fa_icon "image", class: "icon"
-              = f.file_field :image, class: "hidden"
-          = f.submit "Send", class: "form__submit"
+        .main__content__message
+          .main__content__message__upper-info
+            .main__content__message__upper-info__name
+              %p えええ
+            .main__content__message__upper-info__time
+              %p えええ２
+          .main__content__message__text
+            %p ええええええ３
+        .main__content__message
+          .main__content__message__upper-info
+            .main__content__message__upper-info__name
+              %p えええ
+            .main__content__message__upper-info__time
+              %p えええ２
+          .main__content__message__text
+            %p ええええええ３
+        .main__content__message
+          .main__content__message__upper-info
+            .main__content__message__upper-info__name
+              %p えええ
+            .main__content__message__upper-info__time
+              %p えええ２
+          .main__content__message__text
+            %p ええええええ３
+      .main__form
+        .main__form__box
+          %form
+            %input.main__form__box__input{name: :name, placeholder: "type a message", type: :text}
+            %label.upload-label{for: "message_image"}
+              %i.fa.fa-picture-o
+              %input#message_image.main__form__box__image{name: :image, type: :file}
+        = link_to "#" do
+          .main__form__btn send
