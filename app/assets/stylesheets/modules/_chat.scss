@@ -43,6 +43,7 @@
     padding: 46px 40px;
     &__message{
       margin-bottom: 40px;
+      overflow: scroll;
       &__upper-info{
         display: flex;
         justify-content: flex-start;

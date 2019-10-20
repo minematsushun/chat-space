@@ -26,6 +26,7 @@
     height: calc(100vh - 100px);
     background: $black-1;
     padding: 20px  20px 0;
+    overflow: scroll;
     .group{
       &__name{
         color: $white;
