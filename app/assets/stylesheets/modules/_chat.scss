@@ -40,10 +40,10 @@
   &__content{
     height: calc(100vh - 190px);
     background: $main-bg;
-    padding: 46px 40px;
+    padding: 46px 40px 10px;
+    overflow: scroll;
     &__message{
       margin-bottom: 40px;
-      overflow: scroll;
       &__upper-info{
         display: flex;
         justify-content: flex-start;
