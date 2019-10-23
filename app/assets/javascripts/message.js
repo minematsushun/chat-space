@@ -19,6 +19,7 @@ $(function(){
     return html;
   }
 
+
   $("#new_message").on("submit", function(e){
     e.preventDefault();
     let message = new FormData(this);
@@ -45,3 +46,5 @@ $(function(){
     })
   })
 })
+
+
