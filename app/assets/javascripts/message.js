@@ -1,4 +1,4 @@
-$(function(){
+$(document).on('turbolinks:load',function(){
 
   function buildHTML(message){
     let addImage = (message.image !== null)? `<img class="lower-message__image" src="${message.image}">`:''
@@ -6,7 +6,7 @@ $(function(){
     let html = `<div class="main__content__message" data-message-id="${message.id}">
                   <div class="main__content__message__upper-info">
                     <div class="main__content__message__upper-info__name">
-                      ${message.user}
+                      ${message.user_name}
                     </div>
                     <div class="main__content__message__upper-info__time">
                       ${message.created_at}
@@ -48,29 +48,30 @@ $(function(){
   })
 
   var reloadMessages = function(){
-    var last_message_id = $(".main__content__message:last").data("message-id")
-    $.ajax({
-      url: "api/messages",
-      type: "GET",
-      dataType: "json",
-      data: {id: last_message_id}
-    })
-    .done(function(messages){
-        let insertHTML = "";
-        messages.forEach(function(message){
-          insertHTML = buildHTML(message);
-          $(".main__content").append(insertHTML);
-        })
-        $(".main__content").animate({scrollTop:$(".main__content")[0].scrollHeight}, "slow");
-    })
-    .fail(function(){
-      alert("自動更新失敗です")
-    });
-
+    if (location.href.match(/\/groups\/\d+\/messages/)){
+      var last_message_id = $(".main__content__message:last").data("message-id")
+      $.ajax({
+        url: "api/messages",
+        type: "GET",
+        dataType: "json",
+        data: {id: last_message_id}
+      })
+      .done(function(messages){
+          let insertHTML = "";
+          if(messages.length !== 0){
+            messages.forEach(function(message){
+              insertHTML = buildHTML(message);
+              $(".main__content").append(insertHTML);
+            })
+            $(".main__content").animate({scrollTop:$(".main__content")[0].scrollHeight}, "slow");
+          }
+      })
+      .fail(function(){
+        alert("自動更新失敗です")
+      });
+    }
   };
-  if (window.location.href.match(/groups\/\d\/messages/)){
-    setInterval(reloadMessages, 5000);
-  }
+  setInterval(reloadMessages, 5000);
 });
 
 

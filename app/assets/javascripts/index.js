@@ -1,7 +1,7 @@
-$(function(){
+$(document).on('turbolinks:load',function(){
 
   let search_list = $("#user-search-result");
-  let searched_list = $("#user-add-result");
+  let searched_list = $(".js-add-user");
 
   function appendUser(user){
     let html = `<div class="chat-group-user clearfix">
@@ -20,24 +20,43 @@ $(function(){
     searched_list.append(html);
   }
 
+  function addNoUser(){
+    let html = `<div class="chat-group-user clearfix">
+                  <p class="chat-group-user__name">ユーザーが見つかりません</p>
+                </div>`
+    search_list.append(html);
+  }
+
   $("#user-search-field").on("keyup",function(){
     let input = $("#user-search-field").val();
+    let array = [] //空の配列を作る（＊２）
+    $("#chat-group-users").find('input').each(function(index, element){
+      array.push($(element).val())
+    }) //配列の中に今のグループのユーザーIDを入れる（＊２）
     $.ajax({
       type: "GET",
       url: "/users",
       dataType: "json",
-      data: { keyword: input },
+      data: { keyword: input , error: array}
     })
     .done(function(users){
       search_list.empty();
-      if(users.length !== 0) {
-        users.forEach(function(user){
-          appendUser(user);
+      console.log("users")
+      if (input.length == 0) {
+        return false;
+      } else if (users.length !== 0) {
+        users.forEach (function(user){
+          if(user.name !== $(".chat-group-user__name").val())
+          console.log(user)
+            appendUser (user);
         });
+      } else {
+        addNoUser();
       }
     })
 
     .fail(function(){
+      console.log(this)
       alert("ユーザー検索に失敗しました");
     });
   });
@@ -50,11 +69,7 @@ $(function(){
     $(this).parent().remove();
   })
 
-  $("#user-add-result").on("click", ".chat-group-user__btn--del" , function(){
-    $(this).parent().remove();
-  })
-
-  $(".chat-group-user__btn--del").on("click", function(){
+  $(".js-add-user").on("click", ".chat-group-user__btn--del" ,function(){
     $(this).parent().remove();
   });
 });
